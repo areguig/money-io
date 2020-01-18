@@ -35,8 +35,8 @@ export class DebtComponent implements OnInit, OnDestroy {
     this.links = {
       last: 0
     };
-    this.predicate = 'id';
-    this.ascending = true;
+    this.predicate = 'created';
+    this.ascending = false;
   }
 
   loadAll(): void {
