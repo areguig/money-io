@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="debt">
+            <h2><span jhiTranslate="moneyIoApp.debt.detail.title">Debt</span> {{debt.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="moneyIoApp.debt.amount">Amount</span></dt>
+                <dd>
+                    <span>{{debt.amount}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.currency">Currency</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'moneyIoApp.Currency.' + debt.currency}}">{{debt.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.comment">Comment</span></dt>
+                <dd>
+                    <span>{{debt.comment}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.owner">Owner</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'moneyIoApp.Owner.' + debt.owner}}">{{debt.owner}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.closed">Closed</span></dt>
+                <dd>
+                    <span>{{debt.closed}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.created">Created</span></dt>
+                <dd>
+                    <span>{{debt.created}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.dueDate">Due Date</span></dt>
+                <dd>
+                    <span>{{debt.dueDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.user">User</span></dt>
+                <dd>
+                    {{debt.user?.login}}
+                </dd>
+                <dt><span jhiTranslate="moneyIoApp.debt.contact">Contact</span></dt>
+                <dd>
+                    <div *ngIf="debt.contact">
+                        <a [routerLink]="['/contact', debt.contact?.id, 'view']">{{debt.contact?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/debt', debt.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

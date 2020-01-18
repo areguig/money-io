@@ -1,0 +1,30 @@
+{
+  "moneyIoApp": {
+    "debt": {
+      "home": {
+        "title": "Debts",
+        "createLabel": "Create a new Debt",
+        "createOrEditLabel": "Create or edit a Debt",
+        "notFound": "No Debts found"
+      },
+      "created": "A new Debt is created with identifier {{ param }}",
+      "updated": "A Debt is updated with identifier {{ param }}",
+      "deleted": "A Debt is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Debt {{ id }}?"
+      },
+      "detail": {
+        "title": "Debt"
+      },
+      "amount": "Amount",
+      "currency": "Currency",
+      "comment": "Comment",
+      "owner": "Owner",
+      "closed": "Closed",
+      "created": "Created",
+      "dueDate": "Due Date",
+      "user": "User",
+      "contact": "Contact"
+    }
+  }
+}

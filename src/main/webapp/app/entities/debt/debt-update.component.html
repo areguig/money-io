@@ -1,0 +1,291 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-debt-heading" jhiTranslate="moneyIoApp.debt.home.createOrEditLabel">Create or edit a Debt</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.amount" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                           formControlName="amount"/>
+                    <div *ngIf="editForm.get('amount')!.invalid && (editForm.get('amount')!.dirty || editForm.get('amount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('amount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('amount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.currency" for="field_currency">Currency</label>
+                    <select class="form-control" name="currency" formControlName="currency" id="field_currency">
+                        <option value="AED">{{'moneyIoApp.Currency.AED' | translate}}</option>
+                        <option value="AFN">{{'moneyIoApp.Currency.AFN' | translate}}</option>
+                        <option value="ALL">{{'moneyIoApp.Currency.ALL' | translate}}</option>
+                        <option value="AMD">{{'moneyIoApp.Currency.AMD' | translate}}</option>
+                        <option value="ANG">{{'moneyIoApp.Currency.ANG' | translate}}</option>
+                        <option value="AOA">{{'moneyIoApp.Currency.AOA' | translate}}</option>
+                        <option value="ARS">{{'moneyIoApp.Currency.ARS' | translate}}</option>
+                        <option value="AUD">{{'moneyIoApp.Currency.AUD' | translate}}</option>
+                        <option value="AWG">{{'moneyIoApp.Currency.AWG' | translate}}</option>
+                        <option value="AZN">{{'moneyIoApp.Currency.AZN' | translate}}</option>
+                        <option value="BAM">{{'moneyIoApp.Currency.BAM' | translate}}</option>
+                        <option value="BBD">{{'moneyIoApp.Currency.BBD' | translate}}</option>
+                        <option value="BDT">{{'moneyIoApp.Currency.BDT' | translate}}</option>
+                        <option value="BGN">{{'moneyIoApp.Currency.BGN' | translate}}</option>
+                        <option value="BHD">{{'moneyIoApp.Currency.BHD' | translate}}</option>
+                        <option value="BIF">{{'moneyIoApp.Currency.BIF' | translate}}</option>
+                        <option value="BMD">{{'moneyIoApp.Currency.BMD' | translate}}</option>
+                        <option value="BND">{{'moneyIoApp.Currency.BND' | translate}}</option>
+                        <option value="BOB">{{'moneyIoApp.Currency.BOB' | translate}}</option>
+                        <option value="BRL">{{'moneyIoApp.Currency.BRL' | translate}}</option>
+                        <option value="BSD">{{'moneyIoApp.Currency.BSD' | translate}}</option>
+                        <option value="BTN">{{'moneyIoApp.Currency.BTN' | translate}}</option>
+                        <option value="BWP">{{'moneyIoApp.Currency.BWP' | translate}}</option>
+                        <option value="BYR">{{'moneyIoApp.Currency.BYR' | translate}}</option>
+                        <option value="BZD">{{'moneyIoApp.Currency.BZD' | translate}}</option>
+                        <option value="CAD">{{'moneyIoApp.Currency.CAD' | translate}}</option>
+                        <option value="CDF">{{'moneyIoApp.Currency.CDF' | translate}}</option>
+                        <option value="CHF">{{'moneyIoApp.Currency.CHF' | translate}}</option>
+                        <option value="CLP">{{'moneyIoApp.Currency.CLP' | translate}}</option>
+                        <option value="CNY">{{'moneyIoApp.Currency.CNY' | translate}}</option>
+                        <option value="COP">{{'moneyIoApp.Currency.COP' | translate}}</option>
+                        <option value="CRC">{{'moneyIoApp.Currency.CRC' | translate}}</option>
+                        <option value="CUC">{{'moneyIoApp.Currency.CUC' | translate}}</option>
+                        <option value="CUP">{{'moneyIoApp.Currency.CUP' | translate}}</option>
+                        <option value="CVE">{{'moneyIoApp.Currency.CVE' | translate}}</option>
+                        <option value="CZK">{{'moneyIoApp.Currency.CZK' | translate}}</option>
+                        <option value="DJF">{{'moneyIoApp.Currency.DJF' | translate}}</option>
+                        <option value="DKK">{{'moneyIoApp.Currency.DKK' | translate}}</option>
+                        <option value="DOP">{{'moneyIoApp.Currency.DOP' | translate}}</option>
+                        <option value="DZD">{{'moneyIoApp.Currency.DZD' | translate}}</option>
+                        <option value="EGP">{{'moneyIoApp.Currency.EGP' | translate}}</option>
+                        <option value="ERN">{{'moneyIoApp.Currency.ERN' | translate}}</option>
+                        <option value="ETB">{{'moneyIoApp.Currency.ETB' | translate}}</option>
+                        <option value="EUR">{{'moneyIoApp.Currency.EUR' | translate}}</option>
+                        <option value="FJD">{{'moneyIoApp.Currency.FJD' | translate}}</option>
+                        <option value="FKP">{{'moneyIoApp.Currency.FKP' | translate}}</option>
+                        <option value="GBP">{{'moneyIoApp.Currency.GBP' | translate}}</option>
+                        <option value="GEL">{{'moneyIoApp.Currency.GEL' | translate}}</option>
+                        <option value="GGP">{{'moneyIoApp.Currency.GGP' | translate}}</option>
+                        <option value="GHS">{{'moneyIoApp.Currency.GHS' | translate}}</option>
+                        <option value="GIP">{{'moneyIoApp.Currency.GIP' | translate}}</option>
+                        <option value="GMD">{{'moneyIoApp.Currency.GMD' | translate}}</option>
+                        <option value="GNF">{{'moneyIoApp.Currency.GNF' | translate}}</option>
+                        <option value="GTQ">{{'moneyIoApp.Currency.GTQ' | translate}}</option>
+                        <option value="GYD">{{'moneyIoApp.Currency.GYD' | translate}}</option>
+                        <option value="HKD">{{'moneyIoApp.Currency.HKD' | translate}}</option>
+                        <option value="HNL">{{'moneyIoApp.Currency.HNL' | translate}}</option>
+                        <option value="HRK">{{'moneyIoApp.Currency.HRK' | translate}}</option>
+                        <option value="HTG">{{'moneyIoApp.Currency.HTG' | translate}}</option>
+                        <option value="HUF">{{'moneyIoApp.Currency.HUF' | translate}}</option>
+                        <option value="IDR">{{'moneyIoApp.Currency.IDR' | translate}}</option>
+                        <option value="ILS">{{'moneyIoApp.Currency.ILS' | translate}}</option>
+                        <option value="IMP">{{'moneyIoApp.Currency.IMP' | translate}}</option>
+                        <option value="INR">{{'moneyIoApp.Currency.INR' | translate}}</option>
+                        <option value="IQD">{{'moneyIoApp.Currency.IQD' | translate}}</option>
+                        <option value="IRR">{{'moneyIoApp.Currency.IRR' | translate}}</option>
+                        <option value="ISK">{{'moneyIoApp.Currency.ISK' | translate}}</option>
+                        <option value="JEP">{{'moneyIoApp.Currency.JEP' | translate}}</option>
+                        <option value="JMD">{{'moneyIoApp.Currency.JMD' | translate}}</option>
+                        <option value="JOD">{{'moneyIoApp.Currency.JOD' | translate}}</option>
+                        <option value="JPY">{{'moneyIoApp.Currency.JPY' | translate}}</option>
+                        <option value="KES">{{'moneyIoApp.Currency.KES' | translate}}</option>
+                        <option value="KGS">{{'moneyIoApp.Currency.KGS' | translate}}</option>
+                        <option value="KHR">{{'moneyIoApp.Currency.KHR' | translate}}</option>
+                        <option value="KMF">{{'moneyIoApp.Currency.KMF' | translate}}</option>
+                        <option value="KPW">{{'moneyIoApp.Currency.KPW' | translate}}</option>
+                        <option value="KRW">{{'moneyIoApp.Currency.KRW' | translate}}</option>
+                        <option value="KWD">{{'moneyIoApp.Currency.KWD' | translate}}</option>
+                        <option value="KYD">{{'moneyIoApp.Currency.KYD' | translate}}</option>
+                        <option value="KZT">{{'moneyIoApp.Currency.KZT' | translate}}</option>
+                        <option value="LAK">{{'moneyIoApp.Currency.LAK' | translate}}</option>
+                        <option value="LBP">{{'moneyIoApp.Currency.LBP' | translate}}</option>
+                        <option value="LKR">{{'moneyIoApp.Currency.LKR' | translate}}</option>
+                        <option value="LRD">{{'moneyIoApp.Currency.LRD' | translate}}</option>
+                        <option value="LSL">{{'moneyIoApp.Currency.LSL' | translate}}</option>
+                        <option value="LYD">{{'moneyIoApp.Currency.LYD' | translate}}</option>
+                        <option value="MAD">{{'moneyIoApp.Currency.MAD' | translate}}</option>
+                        <option value="MDL">{{'moneyIoApp.Currency.MDL' | translate}}</option>
+                        <option value="MGA">{{'moneyIoApp.Currency.MGA' | translate}}</option>
+                        <option value="MKD">{{'moneyIoApp.Currency.MKD' | translate}}</option>
+                        <option value="MMK">{{'moneyIoApp.Currency.MMK' | translate}}</option>
+                        <option value="MNT">{{'moneyIoApp.Currency.MNT' | translate}}</option>
+                        <option value="MOP">{{'moneyIoApp.Currency.MOP' | translate}}</option>
+                        <option value="MRO">{{'moneyIoApp.Currency.MRO' | translate}}</option>
+                        <option value="MUR">{{'moneyIoApp.Currency.MUR' | translate}}</option>
+                        <option value="MVR">{{'moneyIoApp.Currency.MVR' | translate}}</option>
+                        <option value="MWK">{{'moneyIoApp.Currency.MWK' | translate}}</option>
+                        <option value="MXN">{{'moneyIoApp.Currency.MXN' | translate}}</option>
+                        <option value="MYR">{{'moneyIoApp.Currency.MYR' | translate}}</option>
+                        <option value="MZN">{{'moneyIoApp.Currency.MZN' | translate}}</option>
+                        <option value="NAD">{{'moneyIoApp.Currency.NAD' | translate}}</option>
+                        <option value="NGN">{{'moneyIoApp.Currency.NGN' | translate}}</option>
+                        <option value="NIO">{{'moneyIoApp.Currency.NIO' | translate}}</option>
+                        <option value="NOK">{{'moneyIoApp.Currency.NOK' | translate}}</option>
+                        <option value="NPR">{{'moneyIoApp.Currency.NPR' | translate}}</option>
+                        <option value="NZD">{{'moneyIoApp.Currency.NZD' | translate}}</option>
+                        <option value="OMR">{{'moneyIoApp.Currency.OMR' | translate}}</option>
+                        <option value="PAB">{{'moneyIoApp.Currency.PAB' | translate}}</option>
+                        <option value="PEN">{{'moneyIoApp.Currency.PEN' | translate}}</option>
+                        <option value="PGK">{{'moneyIoApp.Currency.PGK' | translate}}</option>
+                        <option value="PHP">{{'moneyIoApp.Currency.PHP' | translate}}</option>
+                        <option value="PKR">{{'moneyIoApp.Currency.PKR' | translate}}</option>
+                        <option value="PLN">{{'moneyIoApp.Currency.PLN' | translate}}</option>
+                        <option value="PYG">{{'moneyIoApp.Currency.PYG' | translate}}</option>
+                        <option value="QAR">{{'moneyIoApp.Currency.QAR' | translate}}</option>
+                        <option value="RON">{{'moneyIoApp.Currency.RON' | translate}}</option>
+                        <option value="RSD">{{'moneyIoApp.Currency.RSD' | translate}}</option>
+                        <option value="RUB">{{'moneyIoApp.Currency.RUB' | translate}}</option>
+                        <option value="RWF">{{'moneyIoApp.Currency.RWF' | translate}}</option>
+                        <option value="SAR">{{'moneyIoApp.Currency.SAR' | translate}}</option>
+                        <option value="SBD">{{'moneyIoApp.Currency.SBD' | translate}}</option>
+                        <option value="SCR">{{'moneyIoApp.Currency.SCR' | translate}}</option>
+                        <option value="SDG">{{'moneyIoApp.Currency.SDG' | translate}}</option>
+                        <option value="SEK">{{'moneyIoApp.Currency.SEK' | translate}}</option>
+                        <option value="SGD">{{'moneyIoApp.Currency.SGD' | translate}}</option>
+                        <option value="SHP">{{'moneyIoApp.Currency.SHP' | translate}}</option>
+                        <option value="SLL">{{'moneyIoApp.Currency.SLL' | translate}}</option>
+                        <option value="SOS">{{'moneyIoApp.Currency.SOS' | translate}}</option>
+                        <option value="SPL">{{'moneyIoApp.Currency.SPL' | translate}}</option>
+                        <option value="SRD">{{'moneyIoApp.Currency.SRD' | translate}}</option>
+                        <option value="STD">{{'moneyIoApp.Currency.STD' | translate}}</option>
+                        <option value="SVC">{{'moneyIoApp.Currency.SVC' | translate}}</option>
+                        <option value="SYP">{{'moneyIoApp.Currency.SYP' | translate}}</option>
+                        <option value="SZL">{{'moneyIoApp.Currency.SZL' | translate}}</option>
+                        <option value="THB">{{'moneyIoApp.Currency.THB' | translate}}</option>
+                        <option value="TJS">{{'moneyIoApp.Currency.TJS' | translate}}</option>
+                        <option value="TMT">{{'moneyIoApp.Currency.TMT' | translate}}</option>
+                        <option value="TND">{{'moneyIoApp.Currency.TND' | translate}}</option>
+                        <option value="TOP">{{'moneyIoApp.Currency.TOP' | translate}}</option>
+                        <option value="TRY">{{'moneyIoApp.Currency.TRY' | translate}}</option>
+                        <option value="TTD">{{'moneyIoApp.Currency.TTD' | translate}}</option>
+                        <option value="TVD">{{'moneyIoApp.Currency.TVD' | translate}}</option>
+                        <option value="TWD">{{'moneyIoApp.Currency.TWD' | translate}}</option>
+                        <option value="TZS">{{'moneyIoApp.Currency.TZS' | translate}}</option>
+                        <option value="UAH">{{'moneyIoApp.Currency.UAH' | translate}}</option>
+                        <option value="UGX">{{'moneyIoApp.Currency.UGX' | translate}}</option>
+                        <option value="USD">{{'moneyIoApp.Currency.USD' | translate}}</option>
+                        <option value="UYU">{{'moneyIoApp.Currency.UYU' | translate}}</option>
+                        <option value="UZS">{{'moneyIoApp.Currency.UZS' | translate}}</option>
+                        <option value="VEF">{{'moneyIoApp.Currency.VEF' | translate}}</option>
+                        <option value="VND">{{'moneyIoApp.Currency.VND' | translate}}</option>
+                        <option value="VUV">{{'moneyIoApp.Currency.VUV' | translate}}</option>
+                        <option value="WST">{{'moneyIoApp.Currency.WST' | translate}}</option>
+                        <option value="XAF">{{'moneyIoApp.Currency.XAF' | translate}}</option>
+                        <option value="XCD">{{'moneyIoApp.Currency.XCD' | translate}}</option>
+                        <option value="XDR">{{'moneyIoApp.Currency.XDR' | translate}}</option>
+                        <option value="XOF">{{'moneyIoApp.Currency.XOF' | translate}}</option>
+                        <option value="XPF">{{'moneyIoApp.Currency.XPF' | translate}}</option>
+                        <option value="YER">{{'moneyIoApp.Currency.YER' | translate}}</option>
+                        <option value="ZAR">{{'moneyIoApp.Currency.ZAR' | translate}}</option>
+                        <option value="ZMW">{{'moneyIoApp.Currency.ZMW' | translate}}</option>
+                        <option value="ZWD">{{'moneyIoApp.Currency.ZWD' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('currency')!.invalid && (editForm.get('currency')!.dirty || editForm.get('currency')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('currency')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.comment" for="field_comment">Comment</label>
+                    <input type="text" class="form-control" name="comment" id="field_comment"
+                           formControlName="comment"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.owner" for="field_owner">Owner</label>
+                    <select class="form-control" name="owner" formControlName="owner" id="field_owner">
+                        <option value="MINE">{{'moneyIoApp.Owner.MINE' | translate}}</option>
+                        <option value="THEIRS">{{'moneyIoApp.Owner.THEIRS' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('owner')!.invalid && (editForm.get('owner')!.dirty || editForm.get('owner')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('owner')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.closed" for="field_closed">Closed</label>
+                    <input type="checkbox" class="form-control" name="closed" id="field_closed"
+                           formControlName="closed"/>
+                    <div *ngIf="editForm.get('closed')!.invalid && (editForm.get('closed')!.dirty || editForm.get('closed')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('closed')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.created" for="field_created">Created</label>
+                    <div class="input-group">
+                        <input id="field_created" type="text" class="form-control" name="created" ngbDatepicker  #createdDp="ngbDatepicker" formControlName="created"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="createdDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('created')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.dueDate" for="field_dueDate">Due Date</label>
+                    <div class="input-group">
+                        <input id="field_dueDate" type="text" class="form-control" name="dueDate" ngbDatepicker  #dueDateDp="ngbDatepicker" formControlName="dueDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dueDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option *ngIf="!editForm.get('user')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('user')!.invalid && (editForm.get('user')!.dirty || editForm.get('user')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('user')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="moneyIoApp.debt.contact" for="field_contact">Contact</label>
+                    <select class="form-control" id="field_contact" name="contact" formControlName="contact">
+                        <option *ngIf="!editForm.get('contact')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption" *ngFor="let contactOption of contacts; trackBy: trackById">{{contactOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('contact')!.invalid && (editForm.get('contact')!.dirty || editForm.get('contact')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('contact')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

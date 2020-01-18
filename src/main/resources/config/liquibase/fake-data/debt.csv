@@ -1,0 +1,11 @@
+id;amount;currency;comment;owner;closed;created;due_date;user_id;contact_id
+1;44568;SGD;alarm XSS Team-oriented;THEIRS;false;2020-01-18;2020-01-18;1;1
+2;29315;BTN;Delaware Bhutan;THEIRS;true;2020-01-17;2020-01-18;1;2
+3;31401;MGA;Generic Soft Soap;THEIRS;true;2020-01-18;2020-01-18;2;3
+4;52016;CRC;Music;MINE;false;2020-01-17;2020-01-17;1;4
+5;19127;SLL;Licensed Frozen Chips Handcrafted;THEIRS;true;2020-01-17;2020-01-17;2;5
+6;69828;LSL;Liberia;THEIRS;false;2020-01-18;2020-01-17;2;6
+7;26656;BZD;plum Tools Ball;THEIRS;false;2020-01-18;2020-01-18;1;7
+8;98600;CDF;Refined Concrete Shoes;THEIRS;false;2020-01-17;2020-01-17;2;8
+9;46301;CRC;California Horizontal implement;THEIRS;false;2020-01-18;2020-01-18;1;9
+10;22035;CUC;application;MINE;false;2020-01-18;2020-01-18;2;10

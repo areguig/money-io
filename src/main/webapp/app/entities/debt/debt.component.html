@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="moneyIoApp.debt.home.title">Debts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-debt" [routerLink]="['/debt/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="moneyIoApp.debt.home.createLabel">
+            Create a new Debt
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="debts?.length === 0">
+        <span jhiTranslate="moneyIoApp.debt.home.notFound">No debts found</span>
+    </div>
+    <div class="table-responsive" *ngIf="debts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="amount"><span jhiTranslate="moneyIoApp.debt.amount">Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="currency"><span jhiTranslate="moneyIoApp.debt.currency">Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="comment"><span jhiTranslate="moneyIoApp.debt.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="owner"><span jhiTranslate="moneyIoApp.debt.owner">Owner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="closed"><span jhiTranslate="moneyIoApp.debt.closed">Closed</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="created"><span jhiTranslate="moneyIoApp.debt.created">Created</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dueDate"><span jhiTranslate="moneyIoApp.debt.dueDate">Due Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="moneyIoApp.debt.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="contact.id"><span jhiTranslate="moneyIoApp.debt.contact">Contact</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let debt of debts ;trackBy: trackId">
+                <td><a [routerLink]="['/debt', debt.id, 'view' ]">{{debt.id}}</a></td>
+                <td>{{debt.amount}}</td>
+                <td jhiTranslate="{{'moneyIoApp.Currency.' + debt.currency}}">{{debt.currency}}</td>
+                <td>{{debt.comment}}</td>
+                <td jhiTranslate="{{'moneyIoApp.Owner.' + debt.owner}}">{{debt.owner}}</td>
+                <td>{{debt.closed}}</td>
+                <td>{{debt.created | date:'mediumDate'}}</td>
+                <td>{{debt.dueDate | date:'mediumDate'}}</td>
+                <td>
+                    {{debt.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="debt.contact">
+                        <a [routerLink]="['/contact', debt.contact?.id, 'view' ]" >{{debt.contact?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/debt', debt.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/debt', debt.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(debt)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

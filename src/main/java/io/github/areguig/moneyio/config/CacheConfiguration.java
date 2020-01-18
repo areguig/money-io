@@ -42,6 +42,9 @@ public class CacheConfiguration {
             createCache(cm, io.github.areguig.moneyio.domain.User.class.getName());
             createCache(cm, io.github.areguig.moneyio.domain.Authority.class.getName());
             createCache(cm, io.github.areguig.moneyio.domain.User.class.getName() + ".authorities");
+            createCache(cm, io.github.areguig.moneyio.domain.Debt.class.getName());
+            createCache(cm, io.github.areguig.moneyio.domain.Contact.class.getName());
+            createCache(cm, io.github.areguig.moneyio.domain.Contact.class.getName() + ".debts");
             // jhipster-needle-ehcache-add-entry
         };
     }
