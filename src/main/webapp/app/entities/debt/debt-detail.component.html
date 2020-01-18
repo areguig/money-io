@@ -40,7 +40,7 @@
                 <dt><span jhiTranslate="moneyIoApp.debt.contact">Contact</span></dt>
                 <dd>
                     <div *ngIf="debt.contact">
-                        <a [routerLink]="['/contact', debt.contact?.id, 'view']">{{debt.contact?.id}}</a>
+                        <a [routerLink]="['/contact', debt.contact?.id, 'view']">{{debt.contact?.firstName}} {{debt.contact?.lastName}}</a>
                     </div>
                 </dd>
             </dl>

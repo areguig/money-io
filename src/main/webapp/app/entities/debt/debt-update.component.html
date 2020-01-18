@@ -268,7 +268,7 @@
                     <label class="form-control-label" jhiTranslate="moneyIoApp.debt.contact" for="field_contact">Contact</label>
                     <select class="form-control" id="field_contact" name="contact" formControlName="contact">
                         <option *ngIf="!editForm.get('contact')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption" *ngFor="let contactOption of contacts; trackBy: trackById">{{contactOption.id}}</option>
+                        <option [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption" *ngFor="let contactOption of contacts; trackBy: trackById">{{contactOption.firstName}} {{contactOption.lastName}}</option>
                     </select>
                 </div>
                 <div *ngIf="editForm.get('contact')!.invalid && (editForm.get('contact')!.dirty || editForm.get('contact')!.touched)">
