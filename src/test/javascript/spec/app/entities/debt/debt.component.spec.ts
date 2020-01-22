@@ -112,7 +112,7 @@ describe('Component Tests', () => {
       const result = comp.sort();
 
       // THEN
-      expect(result).toEqual(['id,asc']);
+      expect(result).toEqual(['created,desc', 'id']);
     });
 
     it('should calculate the sort attribute for a non-id attribute', () => {
@@ -126,7 +126,7 @@ describe('Component Tests', () => {
       const result = comp.sort();
 
       // THEN
-      expect(result).toEqual(['name,asc', 'id']);
+      expect(result).toEqual(['name,desc', 'id']);
     });
   });
 });
