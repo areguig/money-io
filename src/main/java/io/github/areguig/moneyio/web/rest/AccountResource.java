@@ -12,9 +12,9 @@ import io.github.areguig.moneyio.web.rest.errors.*;
 import io.github.areguig.moneyio.web.rest.vm.KeyAndPasswordVM;
 import io.github.areguig.moneyio.web.rest.vm.ManagedUserVM;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +25,10 @@ import java.util.*;
 /**
  * REST controller for managing the current user's account.
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class AccountResource {
 
     private static class AccountResourceException extends RuntimeException {
@@ -35,20 +37,12 @@ public class AccountResource {
         }
     }
 
-    private final Logger log = LoggerFactory.getLogger(AccountResource.class);
-
     private final UserRepository userRepository;
 
     private final UserService userService;
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
-
-        this.userRepository = userRepository;
-        this.userService = userService;
-        this.mailService = mailService;
-    }
 
     /**
      * {@code POST  /register} : register the user.

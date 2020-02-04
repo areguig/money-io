@@ -5,6 +5,7 @@ import io.github.areguig.moneyio.config.Constants;
 import io.github.areguig.moneyio.MoneyIoApp;
 import io.github.areguig.moneyio.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
+import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -34,7 +35,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
@@ -43,7 +43,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(classes = MoneyIoApp.class)
 public class MailServiceIT {
 
-    private static String languages[] = {
+    private static final String[] languages = {
         "en"
         // jhipster-needle-i18n-language-constant - JHipster will add/remove languages in this array
     };
@@ -220,7 +220,7 @@ public class MailServiceIT {
             URL resource = this.getClass().getClassLoader().getResource(propertyFilePath);
             File file = new File(new URI(resource.getFile()).getPath());
             Properties properties = new Properties();
-            properties.load(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+            properties.load(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
 
             String emailTitle = (String) properties.get("email.test.title");
             assertThat(message.getSubject()).isEqualTo(emailTitle);

@@ -47,7 +47,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         if (env.getActiveProfiles().length != 0) {
-            log.info("Web application configuration, using profiles: {}", (Object[]) env.getActiveProfiles());
+            log.info("Web application configuration, using profiles: {}", env.getActiveProfiles());
         }
         EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
         if (env.acceptsProfiles(Profiles.of(JHipsterConstants.SPRING_PROFILE_PRODUCTION))) {

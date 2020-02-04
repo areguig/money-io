@@ -11,8 +11,8 @@ import io.github.areguig.moneyio.service.dto.UserDTO;
 
 import io.github.jhipster.security.RandomUtil;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,11 +29,11 @@ import java.util.stream.Collectors;
 /**
  * Service class for managing users.
  */
+@Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserService {
-
-    private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
 
@@ -43,20 +43,13 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authorityRepository = authorityRepository;
-        this.cacheManager = cacheManager;
-    }
-
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
         return userRepository.findOneByActivationKey(key)
             .map(user -> {
                 // activate given user for the registration key.
-                user.setActivated(true);
-                user.setActivationKey(null);
+                user.setActivated(true)
+                .setActivationKey(null);
                 this.clearUserCaches(user);
                 log.debug("Activated user: {}", user);
                 return user;
@@ -78,7 +71,7 @@ public class UserService {
 
     public Optional<User> requestPasswordReset(String mail) {
         return userRepository.findOneByEmailIgnoreCase(mail)
-            .filter(User::getActivated)
+            .filter(User::isActivated)
             .map(user -> {
                 user.setResetKey(RandomUtil.generateResetKey());
                 user.setResetDate(Instant.now());
@@ -126,7 +119,7 @@ public class UserService {
     }
 
     private boolean removeNonActivatedUser(User existingUser){
-        if (existingUser.getActivated()) {
+        if (existingUser.isActivated()) {
              return false;
         }
         userRepository.delete(existingUser);

@@ -309,15 +309,15 @@ public class DebtResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(debt.getId().intValue())))
-            .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT)))
             .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY.toString())))
             .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT)))
             .andExpect(jsonPath("$.[*].owner").value(hasItem(DEFAULT_OWNER.toString())))
-            .andExpect(jsonPath("$.[*].closed").value(hasItem(DEFAULT_CLOSED.booleanValue())))
+            .andExpect(jsonPath("$.[*].closed").value(hasItem(DEFAULT_CLOSED)))
             .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())))
             .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getDebt() throws Exception {
@@ -329,11 +329,11 @@ public class DebtResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(debt.getId().intValue()))
-            .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.doubleValue()))
+            .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT))
             .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY.toString()))
             .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT))
             .andExpect(jsonPath("$.owner").value(DEFAULT_OWNER.toString()))
-            .andExpect(jsonPath("$.closed").value(DEFAULT_CLOSED.booleanValue()))
+            .andExpect(jsonPath("$.closed").value(DEFAULT_CLOSED))
             .andExpect(jsonPath("$.created").value(DEFAULT_CREATED.toString()))
             .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()));
     }

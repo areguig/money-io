@@ -134,6 +134,10 @@
             <artifactId>jackson-module-afterburner</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
@@ -366,6 +370,12 @@
                             <version>${jaxb-runtime.version}</version>
                         </path>
                         <!-- jhipster-needle-maven-add-annotation-processor -->
+
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.10</version>
+                        </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>

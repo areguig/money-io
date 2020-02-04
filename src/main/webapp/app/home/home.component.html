@@ -5,18 +5,18 @@
     <div class="col-md-9">
         <h1 class="display-4" jhiTranslate="home.title">MoneyIO</h1>
         <p class="lead" jhiTranslate="home.subtitle">Manage the money you loaned.</p>
-        
+
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
                     [translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
             </div>
-            
+
             <div class="alert" *ngSwitchCase="false">
                 <button class="btn btn-outline-primary btn-lg btn-block" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">Sign in</button>
             </div>
             <div class="alert" *ngSwitchCase="false">
-                <button class="btn btn-primary btn-lg btn-block"  routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+                <button class="btn btn-primary btn-lg btn-block"  routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</button>
             </div>
         </div>
     </div>

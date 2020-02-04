@@ -3,8 +3,8 @@ package io.github.areguig.moneyio.service;
 import io.github.jhipster.config.JHipsterProperties;
 import io.github.areguig.moneyio.config.audit.AuditEventConverter;
 import io.github.areguig.moneyio.repository.PersistenceAuditEventRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,26 +21,16 @@ import java.util.Optional;
  * <p>
  * This is the default implementation to support SpringBoot Actuator {@code AuditEventRepository}.
  */
+@Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AuditEventService {
 
-    private final Logger log = LoggerFactory.getLogger(AuditEventService.class);
-
-    private final JHipsterProperties jHipsterProperties;
 
     private final PersistenceAuditEventRepository persistenceAuditEventRepository;
-
     private final AuditEventConverter auditEventConverter;
-
-    public AuditEventService(
-        PersistenceAuditEventRepository persistenceAuditEventRepository,
-        AuditEventConverter auditEventConverter, JHipsterProperties jhipsterProperties) {
-
-        this.persistenceAuditEventRepository = persistenceAuditEventRepository;
-        this.auditEventConverter = auditEventConverter;
-        this.jHipsterProperties = jhipsterProperties;
-    }
+    private final JHipsterProperties jHipsterProperties;
 
     /**
     * Old audit events should be automatically deleted after 30 days.

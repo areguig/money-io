@@ -15,8 +15,8 @@ import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,11 +56,11 @@ import java.util.*;
  * <p>
  * Another option would be to have a specific JPA entity graph to handle this case.
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class UserResource {
-
-    private final Logger log = LoggerFactory.getLogger(UserResource.class);
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -70,13 +70,6 @@ public class UserResource {
     private final UserRepository userRepository;
 
     private final MailService mailService;
-
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
-
-        this.userService = userService;
-        this.userRepository = userRepository;
-        this.mailService = mailService;
-    }
 
     /**
      * {@code POST  /users}  : Creates a new user.
